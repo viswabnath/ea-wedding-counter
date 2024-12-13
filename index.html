@@ -4,16 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Anil & Eswari's Wedding Countdown</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <style>
         /* Global Styles */
         body {
-            font-family: 'Arial', sans-serif; /* Changed to Arial for modern look */
+            font-family: 'Poppins', sans-serif; /* Clean modern font */
             margin: 0;
             padding: 0;
             background: url('./gopuram.webp') no-repeat center center fixed;
             background-size: cover;
             transition: background 0.3s ease; /* Smooth transition for background */
-            color: #333;
+            color: #4B4B4B; /* Neutral dark gray text */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -22,87 +23,104 @@
 
         /* Hover effect on background */
         body:hover {
-            background: url('./gopuram.webp') no-repeat center center fixed;
-            background-size: cover;
             filter: brightness(1.2); /* Brighten on hover */
         }
 
         /* Container box styles */
         .container {
-            background-color: rgba(255, 255, 255, 0.6); /* Light white box with opacity */
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            background-color: rgba(255, 255, 255, 0.8); /* Light white box with opacity */
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.3);
             text-align: center;
-            width: 80%;
-            max-width: 700px;
+            width: 85%;
+            max-width: 750px;
             transition: box-shadow 0.3s ease-in-out;
         }
 
         /* Hover effect for container */
         .container:hover {
-            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.4);
         }
 
         h1 {
+            font-family: 'Playfair Display', serif; /* Elegant serif font for headings */
             font-size: 3.5rem;
-            color: #b83c3c; /* Changed to a more elegant red */
+            color: #D32F2F; /* Bold red for the title */
             margin-bottom: 20px;
             text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
         }
 
         h2 {
-            font-size: 1.6rem;
-            color: #6d2a2a; /* Slightly darker shade for quotes */
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            color: #6A1B1A; /* Dark red for quotes */
             font-style: italic;
-            margin: 15px 0;
+            margin: 10px 0;
         }
 
         .countdown {
-            font-size: 2.5rem;
-            font-weight: bold;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.8);
+            font-size: 2.8rem;
+            font-weight: 600;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.9);
             border-radius: 10px;
-            border: 2px solid #b83c3c;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            color: #b83c3c;
-            margin-top: 20px;
+            border: 2px solid #D32F2F;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            color: #D32F2F;
+            margin-top: 25px;
+            font-family: 'Poppins', sans-serif;
         }
 
         .footer {
             margin-top: 40px;
-            font-size: 1rem;
-            color: #6d2a2a;
+            font-size: 1.1rem;
+            color: #6A1B1A;
+            font-family: 'Poppins', sans-serif;
         }
 
         .footer span {
             font-weight: bold;
-            color: #d32f2f;
+            color: #D32F2F;
         }
 
         .footer a {
             text-decoration: none;
-            color: #d32f2f;
-            font-weight: bold;
+            color: #D32F2F;
+            font-weight: 600;
         }
 
-        @media (max-width: 600px) {
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3rem;
+            }
+            .countdown {
+                font-size: 2.5rem;
+            }
+            .footer {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
             h1 {
                 font-size: 2.5rem;
             }
             .countdown {
                 font-size: 2rem;
+                padding: 15px;
             }
-            .quote {
-                font-size: 1rem;
+            h2 {
+                font-size: 1.2rem;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>🎉 Anil & Eswari's Wedding 🎊</h1>
+        
+        <h1>🎉 Anil & Eswari's Big Day 🎊</h1>
         <div class="countdown" id="countdown">Loading...</div>
         <h2 class="quote">"Two hearts, one soul, infinite love."</h2>
         <h2 class="quote">"Join us as we celebrate a bond of love and promise!"</h2>
@@ -115,8 +133,10 @@
 
     <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js"></script>
-    <script>
-        // Firebase configuration
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js';
+        import { getDatabase, ref, get, set } from 'https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js';
+
         const firebaseConfig = {
             apiKey: "AIzaSyD9aBK-XJxKpzPQSweznOwrqSV8Iz4bIAk",
             authDomain: "anil-eswari-wedding-counter.firebaseapp.com",
@@ -129,17 +149,21 @@
         };
 
         // Initialize Firebase
-        const app = firebase.initializeApp(firebaseConfig);
-        const database = firebase.database();
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+
+        // Get the reference for visitor count
+        const visitorRef = ref(database, 'visitors');
 
         // Increment visitor count
-        const visitorRef = database.ref('visitors');
-        visitorRef.transaction(current => (current || 0) + 1);
-
-        // Update visitor count on the webpage
-        visitorRef.on('value', snapshot => {
-            const visitorCount = snapshot.val();
-            document.getElementById('visitor-count').textContent = visitorCount;
+        get(visitorRef).then(snapshot => {
+            let currentVisitors = snapshot.val() || 0;
+            currentVisitors++;
+            set(visitorRef, currentVisitors);
+            
+            document.getElementById('visitor-count').textContent = currentVisitors;
+        }).catch((error) => {
+            console.error("Error reading or writing data:", error);
         });
 
         // Countdown function
@@ -163,7 +187,9 @@
         }
 
         // Update countdown every second
-        setInterval(updateCountdown, 1000);
+        document.addEventListener('DOMContentLoaded', function() {
+            setInterval(updateCountdown, 1000);
+        });
     </script>
 </body>
 </html>
