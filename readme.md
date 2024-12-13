@@ -1,5 +1,7 @@
 # Wedding Countdown
 
+https://viswabnath.github.io/ea-wedding-counter/
+
 This is a simple countdown timer for Anil & Eswari's wedding, featuring a live visitor counter. The website displays a festive countdown to the big day, accompanied by an elegant design and smooth animations.
 
 ## Features:
