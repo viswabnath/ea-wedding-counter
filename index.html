@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anil & Eswari's Wedding Countdown</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Arial', sans-serif; /* Changed to Arial for modern look */
+            margin: 0;
+            padding: 0;
+            background: url('./gopuram.webp') no-repeat center center fixed;
+            background-size: cover;
+            transition: background 0.3s ease; /* Smooth transition for background */
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Hover effect on background */
+        body:hover {
+            background: url('./gopuram.webp') no-repeat center center fixed;
+            background-size: cover;
+            filter: brightness(1.2); /* Brighten on hover */
+        }
+
+        /* Container box styles */
+        .container {
+            background-color: rgba(255, 255, 255, 0.6); /* Light white box with opacity */
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            width: 80%;
+            max-width: 700px;
+            transition: box-shadow 0.3s ease-in-out;
+        }
+
+        /* Hover effect for container */
+        .container:hover {
+            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            color: #b83c3c; /* Changed to a more elegant red */
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            font-size: 1.6rem;
+            color: #6d2a2a; /* Slightly darker shade for quotes */
+            font-style: italic;
+            margin: 15px 0;
+        }
+
+        .countdown {
+            font-size: 2.5rem;
+            font-weight: bold;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            border: 2px solid #b83c3c;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            color: #b83c3c;
+            margin-top: 20px;
+        }
+
+        .footer {
+            margin-top: 40px;
+            font-size: 1rem;
+            color: #6d2a2a;
+        }
+
+        .footer span {
+            font-weight: bold;
+            color: #d32f2f;
+        }
+
+        .footer a {
+            text-decoration: none;
+            color: #d32f2f;
+            font-weight: bold;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            .countdown {
+                font-size: 2rem;
+            }
+            .quote {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎉 Anil & Eswari's Wedding 🎊</h1>
+        <div class="countdown" id="countdown">Loading...</div>
+        <h2 class="quote">"Two hearts, one soul, infinite love."</h2>
+        <h2 class="quote">"Join us as we celebrate a bond of love and promise!"</h2>
+
+        <div class="footer">
+            Visitors: <span id="visitor-count">0</span><br>
+            <span>❤️ Towards Anil & Eswari</span><br>
+            Designed with <span>❤️</span> for <span>#Anil&Eswari</span> by <a href="https://onemark.co.in" target="_blank">Onemark</a>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js"></script>
+    <script>
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyD9aBK-XJxKpzPQSweznOwrqSV8Iz4bIAk",
+            authDomain: "anil-eswari-wedding-counter.firebaseapp.com",
+            databaseURL: "https://anil-eswari-wedding-counter-default-rtdb.firebaseio.com",
+            projectId: "anil-eswari-wedding-counter",
+            storageBucket: "anil-eswari-wedding-counter.firebasestorage.app",
+            messagingSenderId: "207339311926",
+            appId: "1:207339311926:web:458f7fd29473f53e3fd997",
+            measurementId: "G-KZ1B6N67GZ"
+        };
+
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+
+        // Increment visitor count
+        const visitorRef = database.ref('visitors');
+        visitorRef.transaction(current => (current || 0) + 1);
+
+        // Update visitor count on the webpage
+        visitorRef.on('value', snapshot => {
+            const visitorCount = snapshot.val();
+            document.getElementById('visitor-count').textContent = visitorCount;
+        });
+
+        // Countdown function
+        function updateCountdown() {
+            const weddingDate = new Date("February 15, 2025 10:54:00 GMT+0530").getTime(); // Set the wedding date with timezone
+            const now = new Date().getTime();
+            const diff = weddingDate - now;
+
+            if (diff < 0) {
+                document.getElementById("countdown").innerHTML = "The big day has arrived!";
+                return;
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById("countdown").innerHTML = 
+                `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        }
+
+        // Update countdown every second
+        setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
