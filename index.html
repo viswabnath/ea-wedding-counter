@@ -187,9 +187,10 @@
     <script type="module">
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js';
         import { getDatabase, ref, get, set } from 'https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js';
+        const apiKey = process.env.REACT_APP_FIREBASE_API_KEY;
 
         const firebaseConfig = {
-            apiKey: "AIzaSyD9aBK-XJxKpzPQSweznOwrqSV8Iz4bIAk",
+            apiKey: apiKey,
             authDomain: "anil-eswari-wedding-counter.firebaseapp.com",
             databaseURL: "https://anil-eswari-wedding-counter-default-rtdb.firebaseio.com",
             projectId: "anil-eswari-wedding-counter",
