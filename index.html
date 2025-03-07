@@ -5,9 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Anil & Eswari's Wedding Countdown</title>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@400;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <style>
         /* Global Styles */
         body {
@@ -135,19 +133,16 @@
 <body>
     <div class="container">
         <h1>
-            <span class="names"> Anil & Eswari's 👫 </span><br>
+            <span class="names">Anil & Eswari's 👫</span><br>
             <span class="big-day" id="big-day-message">🎉 Big Day 🎊</span>
         </h1>
         <div class="countdown" id="countdown">Loading...</div>
-        <span class="big-day" id="big-day-message"> ago!💍🎉</span>
-        
-        <h2 class="quote">"Two hearts, one soul, infinite love."</h2>
-        <h2 class="quote">"Thank you for being part of our beautiful journey together!"</h2>
+        <h2 class="quote" id="quote1"></h2>
+        <h2 class="quote" id="quote2"></h2>
 
         <div class="footer">
             Visitors: <span id="visitor-count">0</span><br>
-            Designed with <span>❤️</span> for <span>#EAParinayam</span> by <a href="https://onemark.co.in"
-                target="_blank">Onemark</a>
+            Designed with <span>❤️</span> for <span>#EAParinayam</span> by <a href="https://onemark.co.in" target="_blank">Onemark</a>
         </div>
     </div>
 
@@ -204,27 +199,46 @@
 
                 bigDayMessage.innerHTML = "🎉 The Big Day Was ";
                 document.getElementById("countdown").innerHTML =
-                    `${days}d ${hours}h ${minutes}m ${seconds}s `;
-                return;
+                    `${days}d ${hours}h ${minutes}m ${seconds}s ago!`; // added "ago"
+            } else {
+                // Still counting down to the wedding
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+                bigDayMessage.innerHTML = "🎉 Big Day Countdown 🎊";
+                document.getElementById("countdown").innerHTML =
+                    `${days}d ${hours}h ${minutes}m ${seconds}s`;
             }
-
-            // Still counting down to the wedding
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-            bigDayMessage.innerHTML = "🎉 Big Day Countdown 🎊";
-            document.getElementById("countdown").innerHTML =
-                `${days}d ${hours}h ${minutes}m ${seconds}s`;
         }
 
         // Update countdown every second
         document.addEventListener('DOMContentLoaded', function () {
             setInterval(updateCountdown, 1000);
         });
+
+        // Quotes update based on wedding status
+        function updateQuotes() {
+            const weddingDate = new Date("February 15, 2025 10:54:00 GMT+0530").getTime(); // Wedding date
+            const now = new Date().getTime();
+            const diff = weddingDate - now;
+
+            if (diff < 0) {
+                // If the wedding has already passed, update the quotes
+                document.getElementById("quote1").textContent = "Two hearts, one soul, and a lifetime of memories.";
+                document.getElementById("quote2").textContent = "Thank you for being part of our beautiful journey together!";
+            } else {
+                document.getElementById("quote1").textContent = "Two hearts, one soul, and a lifetime of memories.";
+                document.getElementById("quote2").textContent = "Join us as we celebrate a bond of love and promise!";
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            updateQuotes();
+        });
+
     </script>
 </body>
 
 </html>
-
