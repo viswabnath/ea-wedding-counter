@@ -12,31 +12,20 @@
         /* Global Styles */
         body {
             font-family: 'Poppins', sans-serif;
-            /* Clean modern font */
             margin: 0;
             padding: 0;
-            background: url('./gopuram.webp') no-repeat center center fixed;
+            background: url('./EA.JPG') no-repeat center center fixed;
             background-size: cover;
             transition: background 0.3s ease;
-            /* Smooth transition for background */
             color: #4B4B4B;
-            /* Neutral dark gray text */
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
         }
 
-        /* Hover effect on background */
-        body:hover {
-            filter: brightness(1.2);
-            /* Brighten on hover */
-        }
-
-        /* Container box styles */
         .container {
             background-color: rgba(255, 255, 255, 0.8);
-            /* Light white box with opacity */
             padding: 40px;
             border-radius: 20px;
             box-shadow: 0 6px 30px rgba(0, 0, 0, 0.3);
@@ -44,24 +33,18 @@
             width: 85%;
             max-width: 750px;
             transition: box-shadow 0.3s ease-in-out;
-        }
-
-        /* Hover effect for container */
-        .container:hover {
-            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.4);
+            opacity: 80%;
         }
 
         h1 {
             font-size: 3.5rem;
             color: #b83c3c;
-            /* Elegant red color */
             margin-bottom: 10px;
             text-align: center;
         }
 
         .names {
             display: inline-block;
-            /* Keeps the names inline */
             font-size: 3.5rem;
             font-weight: bold;
             color: #b83c3c;
@@ -70,25 +53,11 @@
 
         .big-day {
             display: block;
-            /* "Big Day" will be on a new line */
             font-size: 2.5rem;
             color: #d32f2f;
-            /* A contrasting red */
             font-weight: bold;
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
             margin-top: 10px;
-        }
-
-
-
-
-        h2 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.5rem;
-            color: #6A1B1A;
-            /* Dark red for quotes */
-            font-style: italic;
-            margin: 10px 0;
         }
 
         .countdown {
@@ -122,7 +91,6 @@
             font-weight: 600;
         }
 
-        /* Responsive Design */
         @media (max-width: 768px) {
             h1 {
                 font-size: 3rem;
@@ -166,18 +134,19 @@
 
 <body>
     <div class="container">
-
         <h1>
             <span class="names"> Anil & Eswari's 👫 </span><br>
-            <span class="big-day">🎉 Big Day 🎊</span>
+            <span class="big-day" id="big-day-message">🎉 Big Day 🎊</span>
         </h1>
         <div class="countdown" id="countdown">Loading...</div>
+        <span class="big-day" id="big-day-message"> ago!💍🎉</span>
+        
         <h2 class="quote">"Two hearts, one soul, infinite love."</h2>
-        <h2 class="quote">"Join us as we celebrate a bond of love and promise!"</h2>
+        <h2 class="quote">"Thank you for being part of our beautiful journey together!"</h2>
 
         <div class="footer">
             Visitors: <span id="visitor-count">0</span><br>
-            Designed with <span>❤️</span> for <span>#Anil&Eswari</span> by <a href="https://onemark.co.in"
+            Designed with <span>❤️</span> for <span>#EAParinayam</span> by <a href="https://onemark.co.in"
                 target="_blank">Onemark</a>
         </div>
     </div>
@@ -222,16 +191,30 @@
             const now = new Date().getTime();
             const diff = weddingDate - now;
 
+            const bigDayMessage = document.getElementById("big-day-message");
+
             if (diff < 0) {
-                document.getElementById("countdown").innerHTML = "The big day has arrived!";
+                // Wedding day has passed, calculate time since the big day
+                const timeSinceWedding = now - weddingDate;
+
+                const days = Math.floor(timeSinceWedding / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeSinceWedding % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeSinceWedding % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeSinceWedding % (1000 * 60)) / 1000);
+
+                bigDayMessage.innerHTML = "🎉 The Big Day Was ";
+                document.getElementById("countdown").innerHTML =
+                    `${days}d ${hours}h ${minutes}m ${seconds}s `;
                 return;
             }
 
+            // Still counting down to the wedding
             const days = Math.floor(diff / (1000 * 60 * 60 * 24));
             const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
+            bigDayMessage.innerHTML = "🎉 Big Day Countdown 🎊";
             document.getElementById("countdown").innerHTML =
                 `${days}d ${hours}h ${minutes}m ${seconds}s`;
         }
@@ -244,3 +227,4 @@
 </body>
 
 </html>
+
