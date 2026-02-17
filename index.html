@@ -10,11 +10,15 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Great+Vibes&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Great+Vibes&family=Montserrat:wght@400;500;600&display=swap"
+        rel="stylesheet">
 
     <style>
         /* ── Reset & Base ── */
-        *, *::before, *::after {
+        *,
+        *::before,
+        *::after {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
@@ -24,9 +28,10 @@
             /* Theme: Red & Gold */
             --color-red: #b83c3c;
             --color-red-dark: #7a0b0b;
-            --color-gold: #c59d5f; /* Elegant Gold */
+            --color-gold: #c59d5f;
+            /* Elegant Gold */
             --color-white: #ffffff;
-            
+
             --font-script: 'Great Vibes', cursive;
             --font-serif: 'Cinzel', serif;
             --font-sans: 'Montserrat', sans-serif;
@@ -34,14 +39,14 @@
 
         body {
             font-family: var(--font-sans);
-            background: url('./background.JPG') no-repeat center center fixed;
+            background: url('./background.jpg') no-repeat center center fixed;
             background-size: cover;
             color: #4B4B4B;
             display: flex;
             flex-direction: column;
             align-items: center;
             /* Align content to bottom to keep faces visible */
-            justify-content: flex-end; 
+            justify-content: flex-end;
             min-height: 100dvh;
             padding: 20px 16px;
             position: relative;
@@ -69,8 +74,15 @@
         }
 
         @keyframes petalFall {
-            0% { transform: translateY(-30px) rotate(0deg); opacity: 0.6; }
-            100% { transform: translateY(105vh) rotate(360deg); opacity: 0; }
+            0% {
+                transform: translateY(-30px) rotate(0deg);
+                opacity: 0.6;
+            }
+
+            100% {
+                transform: translateY(105vh) rotate(360deg);
+                opacity: 0;
+            }
         }
 
         /* ── Main Layout Wrapper ── */
@@ -98,12 +110,22 @@
         }
 
         @keyframes slideUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* ── Typography ── */
-        h1 { margin: 0; line-height: 1; }
+        h1 {
+            margin: 0;
+            line-height: 1;
+        }
 
         .names {
             display: block;
@@ -111,11 +133,14 @@
             font-size: clamp(3rem, 10vw, 4.5rem);
             font-weight: 400;
             color: var(--color-red);
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
             margin-bottom: 5px;
         }
 
-        .emoji-couple { font-size: 0.6em; vertical-align: middle; }
+        .emoji-couple {
+            font-size: 0.6em;
+            vertical-align: middle;
+        }
 
         .big-day {
             display: block;
@@ -132,7 +157,8 @@
         .hashtag {
             font-family: var(--font-sans);
             font-size: 0.75rem;
-            color: var(--color-gold); /* Gold Color */
+            color: var(--color-gold);
+            /* Gold Color */
             letter-spacing: 3px;
             font-weight: 600;
             margin-top: 6px;
@@ -168,7 +194,7 @@
             text-transform: uppercase;
             letter-spacing: 3px;
             margin-bottom: 12px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
             font-weight: 600;
         }
 
@@ -187,8 +213,9 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.25);
-            border-bottom: 3px solid var(--color-gold); /* Gold accent bottom */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+            border-bottom: 3px solid var(--color-gold);
+            /* Gold accent bottom */
         }
 
         .cd-num {
@@ -228,7 +255,7 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            border: 1px solid rgba(255,255,255,0.15);
+            border: 1px solid rgba(255, 255, 255, 0.15);
         }
 
         .live-dot {
@@ -239,13 +266,18 @@
             box-shadow: 0 0 8px #ff4444;
             animation: blink 2s infinite;
         }
-        @keyframes blink { 50% { opacity: 0.4; } }
+
+        @keyframes blink {
+            50% {
+                opacity: 0.4;
+            }
+        }
 
         .brand-link {
             color: #fff;
             text-decoration: none;
             font-weight: 600;
-            border-bottom: 1px solid rgba(255,255,255,0.4);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.4);
             font-size: 0.85rem;
         }
 
@@ -254,10 +286,12 @@
             .container {
                 padding: 22px 15px;
             }
+
             .cd-tile {
                 width: 64px;
                 height: 74px;
             }
+
             .cd-num {
                 font-size: 1.6rem;
             }
@@ -286,7 +320,7 @@
     </script>
 
     <div class="content-wrapper">
-        
+
         <div class="container">
             <h1>
                 <span class="names">Anil &amp; Eswari <span class="emoji-couple">👫</span></span><br>
@@ -316,28 +350,27 @@
                 <span>Visitors: <span id="visitor-count">—</span></span>
             </div>
             <div>
-                <span>Designed with ❤️ by <a class="brand-link" href="https://onemark.co.in" target="_blank">OneMark</a></span>
+                <span>Designed with ❤️ by <a class="brand-link" href="https://onemark.co.in"
+                        target="_blank">OneMark</a></span>
             </div>
         </div>
 
     </div>
 
-    <script src="./env.js"></script>
 
     <script type="module">
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js';
         import { getDatabase, ref, get, set } from 'https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js';
 
-        const E = window.__ENV || {};
         const firebaseConfig = {
-            apiKey: E.FIREBASE_API_KEY || '__FIREBASE_API_KEY__',
-            authDomain: E.FIREBASE_AUTH_DOMAIN || '__FIREBASE_AUTH_DOMAIN__',
-            databaseURL: E.FIREBASE_DATABASE_URL || '__FIREBASE_DATABASE_URL__',
-            projectId: E.FIREBASE_PROJECT_ID || '__FIREBASE_PROJECT_ID__',
-            storageBucket: E.FIREBASE_STORAGE_BUCKET || '__FIREBASE_STORAGE_BUCKET__',
-            messagingSenderId: E.FIREBASE_MESSAGING_SENDER_ID || '__FIREBASE_MESSAGING_SENDER_ID__',
-            appId: E.FIREBASE_APP_ID || '__FIREBASE_APP_ID__',
-            measurementId: E.FIREBASE_MEASUREMENT_ID || '__FIREBASE_MEASUREMENT_ID__',
+            apiKey: "AIzaSyD9aBK-XJxKpzPQSweznOwrqSV8Iz4bIAk",
+            authDomain: "anil-eswari-wedding-counter.firebaseapp.com",
+            databaseURL: "https://anil-eswari-wedding-counter-default-rtdb.firebaseio.com",
+            projectId: "anil-eswari-wedding-counter",
+            storageBucket: "anil-eswari-wedding-counter.firebasestorage.app",
+            messagingSenderId: "207339311926",
+            appId: "1:207339311926:web:458f7fd29473f53e3fd997",
+            measurementId: "G-KZ1B6N67GZ"
         };
 
         try {
@@ -403,4 +436,5 @@
     </script>
 
 </body>
+
 </html>
