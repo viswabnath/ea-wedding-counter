@@ -17,7 +17,6 @@
 - **🌸 Floating Petal Animation** — Gentle red & pink petals drift across the background for a festive, romantic touch.
 - **👀 Live Visitor Counter** — Tracks real-time visitors using Firebase Realtime Database, shown with a pulsing "live" indicator.
 - **🎨 Glassmorphism UI** — Features a frosted glass effect (`backdrop-filter: blur`) that ensures text readability over the photo.
-- **🔒 Secure Config** — Firebase credentials are loaded from a gitignored `env.js` file, keeping secrets safe.
 
 ---
 
@@ -38,9 +37,8 @@
 
 ```text
 ea-wedding-counter/
-├── index.html              # Main application file
-├── background.JPG          # Couple background photo (Royal Theme)
-├── env.js                  # 🔒 Firebase secrets — gitignored
+├── index.html              # Main application file (Contains Firebase Config)
+├── background.jpg          # Couple background photo (Royal Theme)
 ├── README.md               # Project documentation
 └── favicon/                # OneMark branded icons
     ├── favicon.ico
@@ -73,24 +71,24 @@ cd ea-wedding-counter
 
 1. Go to the [Firebase Console]().
 2. Create a new project.
-3. Enable **Realtime Database** and set rules to `read: true, write: true` (for testing).
-4. Copy your project's configuration keys.
+3. Enable **Realtime Database**.
+4. Set the Rules to allow public reads/writes (or use the secure increment-only rules found below).
+5. Copy your project's configuration keys.
 
-### 3. Configure your secrets
+### 3. Configure `index.html`
 
-Create an `env.js` file in the root directory (**this file is gitignored**):
+Open `index.html` and scroll to the bottom script section. Replace the placeholder values in `firebaseConfig` with your actual keys:
 
 ```javascript
-// env.js — DO NOT COMMIT THIS FILE
-window.__ENV = {
-  FIREBASE_API_KEY:             "YOUR_API_KEY",
-  FIREBASE_AUTH_DOMAIN:         "YOUR_AUTH_DOMAIN",
-  FIREBASE_DATABASE_URL:        "YOUR_DATABASE_URL",
-  FIREBASE_PROJECT_ID:          "YOUR_PROJECT_ID",
-  FIREBASE_STORAGE_BUCKET:      "YOUR_STORAGE_BUCKET",
-  FIREBASE_MESSAGING_SENDER_ID: "YOUR_MESSAGING_SENDER_ID",
-  FIREBASE_APP_ID:              "YOUR_APP_ID",
-  FIREBASE_MEASUREMENT_ID:      "YOUR_MEASUREMENT_ID",
+const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_PROJECT.firebaseapp.com",
+    databaseURL: "https://YOUR_PROJECT.firebaseio.com",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_PROJECT.appspot.com",
+    messagingSenderId: "YOUR_SENDER_ID",
+    appId: "YOUR_APP_ID",
+    measurementId: "YOUR_MEASUREMENT_ID"
 };
 
 ```
@@ -147,7 +145,9 @@ The colors are defined in CSS variables at the top of the `<style>` block:
 1. Push your changes to the `main` branch.
 2. Go to **Settings → Pages** in your repository.
 3. Set the source to `main / root`.
-4. **Important:** Since `env.js` is gitignored, you must manually upload/create the `env.js` file on your hosting server or inject the variables during a build process if using a pipeline. For simple GitHub Pages usage, you might need to commit `env.js` (warning: exposes API keys) or use a secure alternative layout.
+4. Your site will be live immediately.
+
+> **Note on Security:** Since this is a static site, Firebase keys are public. To secure your data, ensure your Firebase Realtime Database **Rules** are set to only allow valid visitor increments, preventing anyone from deleting or overwriting your data.
 
 ---
 
@@ -160,4 +160,3 @@ Feel free to submit issues or pull requests for bugs, improvements, or new featu
 ## 💛 Credits
 
 Designed with ❤️ for **#EAParinayam** by [OneMark]().
-
