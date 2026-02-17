@@ -3,242 +3,404 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anil & Eswari's Wedding Countdown</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Anil &amp; Eswari's Wedding Countdown</title>
+
+    <link rel="icon" type="image/x-icon" href="./favicon/favicon.ico">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Great+Vibes&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+
     <style>
-        /* Global Styles */
-        body {
-            font-family: 'Poppins', sans-serif;
+        /* ── Reset & Base ── */
+        *, *::before, *::after {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            background: url('./EA.JPG') no-repeat center center fixed;
+        }
+
+        :root {
+            /* Theme: Red & Gold */
+            --color-red: #b83c3c;
+            --color-red-dark: #7a0b0b;
+            --color-gold: #c59d5f; /* Elegant Gold */
+            --color-white: #ffffff;
+            
+            --font-script: 'Great Vibes', cursive;
+            --font-serif: 'Cinzel', serif;
+            --font-sans: 'Montserrat', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background: url('./background.JPG') no-repeat center center fixed;
             background-size: cover;
-            transition: background 0.3s ease;
             color: #4B4B4B;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            min-height: 100vh;
+            /* Align content to bottom to keep faces visible */
+            justify-content: flex-end; 
+            min-height: 100dvh;
+            padding: 20px 16px;
+            position: relative;
+            overflow-x: hidden;
         }
 
+        /* Overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            background: rgba(60, 10, 10, 0.25);
+        }
+
+        /* ── Floating petals ── */
+        .petal {
+            position: fixed;
+            z-index: 0;
+            pointer-events: none;
+            border-radius: 50% 0 50% 0;
+            opacity: 0;
+            animation: petalFall linear infinite;
+        }
+
+        @keyframes petalFall {
+            0% { transform: translateY(-30px) rotate(0deg); opacity: 0.6; }
+            100% { transform: translateY(105vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* ── Main Layout Wrapper ── */
+        .content-wrapper {
+            width: 100%;
+            max-width: 600px;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            padding-bottom: 20px;
+        }
+
+        /* ── The Text Box ── */
         .container {
-            background-color: rgba(255, 255, 255, 0.8);
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.90);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            padding: 25px 20px;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
             text-align: center;
-            width: 85%;
-            max-width: 750px;
-            transition: box-shadow 0.3s ease-in-out;
-            opacity: 90%;
+            animation: slideUp 0.7s ease-out both;
         }
 
-        h1 {
-            font-size: 3.5rem;
-            color: #b83c3c;
-            margin-bottom: 10px;
-            text-align: center;
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
+
+        /* ── Typography ── */
+        h1 { margin: 0; line-height: 1; }
 
         .names {
-            display: inline-block;
-            font-size: 3.5rem;
-            font-weight: bold;
-            color: #b83c3c;
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+            display: block;
+            font-family: var(--font-script);
+            font-size: clamp(3rem, 10vw, 4.5rem);
+            font-weight: 400;
+            color: var(--color-red);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 5px;
         }
+
+        .emoji-couple { font-size: 0.6em; vertical-align: middle; }
 
         .big-day {
             display: block;
-            font-size: 2.5rem;
-            color: #d32f2f;
-            font-weight: bold;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-            margin-top: 10px;
+            font-family: var(--font-serif);
+            font-size: clamp(1.1rem, 4vw, 1.4rem);
+            color: var(--color-red-dark);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 8px;
         }
 
-        .countdown {
-            font-size: 2.8rem;
+        /* ── NEW HASHTAG STYLE ── */
+        .hashtag {
+            font-family: var(--font-sans);
+            font-size: 0.75rem;
+            color: var(--color-gold); /* Gold Color */
+            letter-spacing: 3px;
             font-weight: 600;
-            padding: 25px;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 10px;
-            border: 2px solid #D32F2F;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-            color: #D32F2F;
-            margin-top: 25px;
-            font-family: 'Poppins', sans-serif;
+            margin-top: 6px;
+            text-transform: uppercase;
         }
 
+        .divider {
+            margin: 15px auto;
+            width: 50%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--color-red), transparent);
+            opacity: 0.5;
+        }
+
+        .quote {
+            font-family: var(--font-script);
+            font-size: clamp(1.3rem, 4.5vw, 1.6rem);
+            color: #555;
+            margin-top: 5px;
+            line-height: 1.4;
+        }
+
+        /* ── Countdown (OUTSIDE THE BOX) ── */
+        .countdown-wrap {
+            margin-top: 5px;
+            animation: slideUp 0.8s ease-out both;
+        }
+
+        .countdown-label {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 12px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+            font-weight: 600;
+        }
+
+        .cd-tiles {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .cd-tile {
+            background: rgba(255, 255, 255, 0.95);
+            width: 72px;
+            height: 82px;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+            border-bottom: 3px solid var(--color-gold); /* Gold accent bottom */
+        }
+
+        .cd-num {
+            font-family: var(--font-serif);
+            font-size: 1.9rem;
+            font-weight: 700;
+            color: var(--color-red);
+            line-height: 1;
+        }
+
+        .cd-lbl {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #888;
+            margin-top: 4px;
+            font-weight: 600;
+        }
+
+        /* ── Footer (OUTSIDE THE BOX) ── */
         .footer {
-            margin-top: 40px;
-            font-size: 1.1rem;
-            color: #6A1B1A;
-            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.8rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            animation: slideUp 0.9s ease-out both;
         }
 
-        .footer span {
-            font-weight: bold;
-            color: #D32F2F;
+        .visitor-pill {
+            background: rgba(0, 0, 0, 0.35);
+            backdrop-filter: blur(4px);
+            padding: 6px 16px;
+            border-radius: 50px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid rgba(255,255,255,0.15);
         }
 
-        .footer a {
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #ff4444;
+            box-shadow: 0 0 8px #ff4444;
+            animation: blink 2s infinite;
+        }
+        @keyframes blink { 50% { opacity: 0.4; } }
+
+        .brand-link {
+            color: #fff;
             text-decoration: none;
-            color: #D32F2F;
             font-weight: 600;
+            border-bottom: 1px solid rgba(255,255,255,0.4);
+            font-size: 0.85rem;
         }
 
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 3rem;
-            }
-
-            .countdown {
-                font-size: 2.5rem;
-            }
-
-            .footer {
-                font-size: 1rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 2.5rem;
-            }
-
-            .countdown {
-                font-size: 2rem;
-                padding: 15px;
-            }
-
-            h2 {
-                font-size: 1.2rem;
-            }
-        }
-
+        /* ── Mobile Optimization ── */
         @media (max-width: 600px) {
-            .names {
-                font-size: 2.5rem;
+            .container {
+                padding: 22px 15px;
             }
-
-            .big-day {
-                font-size: 2rem;
+            .cd-tile {
+                width: 64px;
+                height: 74px;
+            }
+            .cd-num {
+                font-size: 1.6rem;
             }
         }
     </style>
 </head>
 
 <body>
-    <div class="container">
-        <h1>
-            <span class="names">Anil & Eswari's 👫</span><br>
-            <span class="big-day" id="big-day-message">🎉 Big Day 🎊</span>
-        </h1>
-        <div class="countdown" id="countdown">Loading...</div>
-        <h2 class="quote" id="quote1"></h2>
-        <h2 class="quote" id="quote2"></h2>
+
+    <script>
+        const colours = ['#b83c3c', '#D32F2F', '#f7c5c5', '#ffe0b2', '#ffc8c8'];
+        for (let i = 0; i < 16; i++) {
+            const p = document.createElement('div');
+            p.className = 'petal';
+            const sz = 6 + Math.random() * 8;
+            p.style.cssText =
+                `left:${Math.random() * 100}vw;` +
+                `width:${sz}px;height:${sz * 1.4}px;` +
+                `background:${colours[Math.floor(Math.random() * colours.length)]};` +
+                `opacity:0.5;` +
+                `animation-duration:${8 + Math.random() * 10}s;` +
+                `animation-delay:${Math.random() * 12}s;` +
+                `border-radius:${Math.random() > .5 ? '50% 0 50% 0' : '0 50% 0 50%'};`;
+            document.body.appendChild(p);
+        }
+    </script>
+
+    <div class="content-wrapper">
+        
+        <div class="container">
+            <h1>
+                <span class="names">Anil &amp; Eswari <span class="emoji-couple">👫</span></span><br>
+                <span class="big-day" id="big-day-message">The Big Day</span>
+                <div class="hashtag">#EAParinayam</div>
+            </h1>
+
+            <div class="divider"></div>
+
+            <h2 class="quote" id="quote1"></h2>
+            <h2 class="quote" id="quote2" style="font-size: 1rem; margin-top:0;"></h2>
+        </div>
+
+        <div class="countdown-wrap">
+            <div class="countdown-label" id="cd-label">Time Remaining</div>
+            <div class="cd-tiles">
+                <div class="cd-tile"><span class="cd-num" id="cd-d">00</span><span class="cd-lbl">Days</span></div>
+                <div class="cd-tile"><span class="cd-num" id="cd-h">00</span><span class="cd-lbl">Hrs</span></div>
+                <div class="cd-tile"><span class="cd-num" id="cd-m">00</span><span class="cd-lbl">Mins</span></div>
+                <div class="cd-tile"><span class="cd-num" id="cd-s">00</span><span class="cd-lbl">Secs</span></div>
+            </div>
+        </div>
 
         <div class="footer">
-            Visitors: <span id="visitor-count">0</span><br>
-            Designed with <span>❤️</span> for <span>#EAParinayam</span> by <a href="https://onemark.co.in" target="_blank">Onemark</a>
+            <div class="visitor-pill">
+                <span class="live-dot"></span>
+                <span>Visitors: <span id="visitor-count">—</span></span>
+            </div>
+            <div>
+                <span>Designed with ❤️ by <a class="brand-link" href="https://onemark.co.in" target="_blank">OneMark</a></span>
+            </div>
         </div>
+
     </div>
 
-    <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js"></script>
+    <script src="./env.js"></script>
+
     <script type="module">
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js';
         import { getDatabase, ref, get, set } from 'https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js';
+
+        const E = window.__ENV || {};
         const firebaseConfig = {
-            apiKey: "AIzaSyD9aBK-XJxKpzPQSweznOwrqSV8Iz4bIAk",
-            authDomain: "anil-eswari-wedding-counter.firebaseapp.com",
-            databaseURL: "https://anil-eswari-wedding-counter-default-rtdb.firebaseio.com",
-            projectId: "anil-eswari-wedding-counter",
-            storageBucket: "anil-eswari-wedding-counter.firebasestorage.app",
-            messagingSenderId: "207339311926",
-            appId: "1:207339311926:web:458f7fd29473f53e3fd997",
-            measurementId: "G-KZ1B6N67GZ"
+            apiKey: E.FIREBASE_API_KEY || '__FIREBASE_API_KEY__',
+            authDomain: E.FIREBASE_AUTH_DOMAIN || '__FIREBASE_AUTH_DOMAIN__',
+            databaseURL: E.FIREBASE_DATABASE_URL || '__FIREBASE_DATABASE_URL__',
+            projectId: E.FIREBASE_PROJECT_ID || '__FIREBASE_PROJECT_ID__',
+            storageBucket: E.FIREBASE_STORAGE_BUCKET || '__FIREBASE_STORAGE_BUCKET__',
+            messagingSenderId: E.FIREBASE_MESSAGING_SENDER_ID || '__FIREBASE_MESSAGING_SENDER_ID__',
+            appId: E.FIREBASE_APP_ID || '__FIREBASE_APP_ID__',
+            measurementId: E.FIREBASE_MEASUREMENT_ID || '__FIREBASE_MEASUREMENT_ID__',
         };
 
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const database = getDatabase(app);
+        try {
+            const app = initializeApp(firebaseConfig);
+            const db = getDatabase(app);
+            const vRef = ref(db, 'visitors');
+            const snap = await get(vRef);
+            const n = (snap.val() || 0) + 1;
+            await set(vRef, n);
+            document.getElementById('visitor-count').textContent = n.toLocaleString('en-IN');
+        } catch (e) {
+            console.warn('Firebase error:', e.message);
+            document.getElementById('visitor-count').textContent = '—';
+        }
 
-        // Get the reference for visitor count
-        const visitorRef = ref(database, 'visitors');
+        /* ── Countdown Logic ── */
+        // Date: Feb 15, 2025
+        const WEDDING = new Date("February 15, 2025 10:54:00 GMT+0530").getTime();
 
-        // Increment visitor count
-        get(visitorRef).then(snapshot => {
-            let currentVisitors = snapshot.val() || 0;
-            currentVisitors++;
-            set(visitorRef, currentVisitors);
+        const elD = document.getElementById('cd-d');
+        const elH = document.getElementById('cd-h');
+        const elM = document.getElementById('cd-m');
+        const elS = document.getElementById('cd-s');
+        const elMsg = document.getElementById('big-day-message');
+        const elLbl = document.getElementById('cd-label');
+        const elQ1 = document.getElementById('quote1');
+        const elQ2 = document.getElementById('quote2');
 
-            document.getElementById('visitor-count').textContent = currentVisitors;
-        }).catch((error) => {
-            console.error("Error reading or writing data:", error);
-        });
+        const pad = n => String(n).padStart(2, '0');
 
-        // Countdown function
-        function updateCountdown() {
-            const weddingDate = new Date("February 15, 2025 10:54:00 GMT+0530").getTime(); // Set the wedding date with timezone
-            const now = new Date().getTime();
-            const diff = weddingDate - now;
-
-            const bigDayMessage = document.getElementById("big-day-message");
-
-            if (diff < 0) {
-                // Wedding day has passed, calculate time since the big day
-                const timeSinceWedding = now - weddingDate;
-
-                const days = Math.floor(timeSinceWedding / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((timeSinceWedding % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((timeSinceWedding % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((timeSinceWedding % (1000 * 60)) / 1000);
-
-                bigDayMessage.innerHTML = "🎉 The Big Day Was ";
-                document.getElementById("countdown").innerHTML =
-                    `${days}d ${hours}h ${minutes}m ${seconds}s ago!`; // added "ago"
-            } else {
-                // Still counting down to the wedding
-                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-                bigDayMessage.innerHTML = "🎉 Big Day Countdown 🎊";
-                document.getElementById("countdown").innerHTML =
-                    `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        function setNum(el, val) {
+            const s = pad(val);
+            if (el.textContent !== s) {
+                el.textContent = s;
             }
         }
 
-        // Update countdown every second
-        document.addEventListener('DOMContentLoaded', function () {
-            setInterval(updateCountdown, 1000);
-        });
+        function tick() {
+            const diff = WEDDING - Date.now();
+            const t = Math.abs(diff);
+            const d = Math.floor(t / 86400000);
+            const h = Math.floor((t % 86400000) / 3600000);
+            const m = Math.floor((t % 3600000) / 60000);
+            const s = Math.floor((t % 60000) / 1000);
 
-        // Quotes update based on wedding status
-        function updateQuotes() {
-            const weddingDate = new Date("February 15, 2025 10:54:00 GMT+0530").getTime(); // Wedding date
-            const now = new Date().getTime();
-            const diff = weddingDate - now;
+            setNum(elD, d); setNum(elH, h); setNum(elM, m); setNum(elS, s);
 
             if (diff < 0) {
-                // If the wedding has already passed, update the quotes
-                document.getElementById("quote1").textContent = "Two hearts, one soul, and a lifetime of memories.";
-                document.getElementById("quote2").textContent = "Thank you for being part of our beautiful journey together!";
+                elMsg.innerHTML = 'Happily Married!';
+                elLbl.textContent = 'Since the Wedding';
+                elQ1.textContent = 'Two hearts, one soul, and a lifetime of memories.';
+                elQ2.textContent = 'Thank you for being part of our beautiful journey together!';
             } else {
-                document.getElementById("quote1").textContent = "Two hearts, one soul, and a lifetime of memories.";
-                document.getElementById("quote2").textContent = "Join us as we celebrate a bond of love and promise!";
+                elMsg.innerHTML = 'The Big Day Is Coming';
+                elLbl.textContent = 'Countdown To The Moment';
+                elQ1.textContent = 'Two hearts, one soul, and a lifetime of memories.';
+                elQ2.textContent = 'Join us as we celebrate a bond of love!';
             }
         }
 
-        document.addEventListener('DOMContentLoaded', function () {
-            updateQuotes();
-        });
-
+        tick();
+        setInterval(tick, 1000);
     </script>
-</body>
 
+</body>
 </html>
