@@ -1,35 +1,30 @@
 
-# 💍 Anil & Eswari's Wedding Countdown — #EAParinayam
 
-> A royal, animated wedding countdown page designed for Anil & Eswari's big day.
+# 💍 Anil & Eswari's Wedding Celebration — #EAParinayam
 
-[![Live Site](https://img.shields.io/badge/🌐%20View%20Live%20Site-EA%20Wedding%20Counter-B83C3C?style=for-the-badge&logoColor=white)](https://viswabnath.github.io/ea-wedding-counter/)
-[![Made with Love](https://img.shields.io/badge/Made%20with-❤️-B83C3C?style=for-the-badge)](https://onemark.co.in)
-[![GitHub Pages](https://img.shields.io/badge/Hosted%20on-GitHub%20Pages-222222?style=for-the-badge&logo=github&logoColor=white)](https://viswabnath.github.io/ea-wedding-counter/)
+> A royal, fully static digital keepsake designed for Anil & Eswari's big day. Transitioned from a live countdown to a permanent digital memory.
 
 ---
 
 ## ✨ Features
 
-- **👑 Royal Aesthetics** — Designed with a luxurious **Red & Gold** theme, featuring *Great Vibes* (script) and *Cinzel* (royal serif) fonts.
-- **📱 Smart Mobile Layout** — The layout is anchored to the bottom of the screen on mobile devices, ensuring the couple's faces in the background photo remain perfectly visible.
-- **⏳ Floating Countdown** — The countdown timer floats elegantly *outside* the main glass card, creating a modern, layered depth effect.
-- **🌸 Floating Petal Animation** — Gentle red & pink petals drift across the background for a festive, romantic touch.
-- **👀 Live Visitor Counter** — Tracks real-time visitors using Firebase Realtime Database, shown with a pulsing "live" indicator.
-- **🎨 Glassmorphism UI** — Features a frosted glass effect (`backdrop-filter: blur`) that ensures text readability over the photo.
+* **👑 Royal Aesthetics** — High-end **Red & Gold** visual identity using the *Cinzel* (royal serif) and *Great Vibes* (script) font families.
+* **📱 Smart Mobile Optimization** — The layout is anchored to the bottom of the screen on mobile devices, ensuring the couple's faces in the background photo remain perfectly visible.
+* **⏳ Time-Aware UI** — Logic automatically switches the interface from "The Big Day Is Coming" to **"Happily Married!"** based on the wedding timestamp.
+* **🌸 Interactive Petal Engine** — Lightweight JavaScript-driven animation that creates drifting red and pink petals across the screen.
+* **🎨 Glassmorphism Design** — Features a frosted glass effect (`backdrop-filter: blur`) that ensures text readability over the background photo.
 
 ---
 
 ## 🛠 Technologies Used
 
-| Layer      | Technology |
-|------------|------------|
-| Structure  | HTML5 |
-| Styling    | CSS3 (Flexbox, `clamp()`, Glassmorphism, Animations) |
-| Fonts      | Google Fonts — **Cinzel** (Headers), **Great Vibes** (Names), **Montserrat** (Body) |
-| Logic      | Vanilla JavaScript (ES Modules) |
-| Database   | Firebase Realtime Database (Visitor Counter) |
-| Hosting    | GitHub Pages |
+| Layer | Technology |
+| --- | --- |
+| Structure | HTML5 |
+| Styling | CSS3 (Flexbox, `clamp()`, Glassmorphism, Animations) |
+| Fonts | Google Fonts — **Cinzel**, **Great Vibes**, **Montserrat** |
+| Logic | Vanilla JavaScript |
+| Hosting | GitHub Pages |
 
 ---
 
@@ -37,14 +32,11 @@
 
 ```text
 ea-wedding-counter/
-├── index.html              # Main application file (Contains Firebase Config)
+├── index.html              # Main application file (HTML + CSS + JS)
 ├── background.jpg          # Couple background photo (Royal Theme)
 ├── README.md               # Project documentation
 └── favicon/                # OneMark branded icons
     ├── favicon.ico
-    ├── favicon-96x96.png
-    ├── favicon.svg
-    ├── apple-touch-icon.png
     └── site.webmanifest
 
 ```
@@ -55,62 +47,19 @@ ea-wedding-counter/
 
 ### Prerequisites
 
-* A modern browser.
-* A Firebase project with Realtime Database enabled.
-* A local server (since the project uses ES Modules).
+* A modern web browser.
 
 ### 1. Clone the repository
 
 ```bash
-git clone [https://github.com/viswabnath/ea-wedding-counter.git](https://github.com/viswabnath/ea-wedding-counter.git)
+git clone https://github.com/viswabnath/ea-wedding-counter.git
 cd ea-wedding-counter
 
 ```
 
-### 2. Set up Firebase
+### 2. Run Locally
 
-1. Go to the [Firebase Console]().
-2. Create a new project.
-3. Enable **Realtime Database**.
-4. Set the Rules to allow public reads/writes (or use the secure increment-only rules found below).
-5. Copy your project's configuration keys.
-
-### 3. Configure `index.html`
-
-Open `index.html` and scroll to the bottom script section. Replace the placeholder values in `firebaseConfig` with your actual keys:
-
-```javascript
-const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_PROJECT.firebaseapp.com",
-    databaseURL: "https://YOUR_PROJECT.firebaseio.com",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_PROJECT.appspot.com",
-    messagingSenderId: "YOUR_SENDER_ID",
-    appId: "YOUR_APP_ID",
-    measurementId: "YOUR_MEASUREMENT_ID"
-};
-
-```
-
-### 4. Run Locally
-
-Because this project uses ES Modules (`type="module"`), you cannot simply double-click `index.html`. You must run it via a local server.
-
-**Using Python:**
-
-```bash
-python3 -m http.server
-# Then open http://localhost:8000
-
-```
-
-**Using Node (serve):**
-
-```bash
-npx serve .
-
-```
+Because the external Firebase dependencies have been removed, you can now simply **double-click `index.html**` or open it directly in any modern browser to view the project.
 
 ---
 
@@ -118,10 +67,9 @@ npx serve .
 
 ### Updating the Wedding Date
 
-Open `index.html` and find the `WEDDING` constant in the script tag:
+Open `index.html` and find the `WEDDING` constant in the script tag to adjust the target timestamp:
 
 ```javascript
-// Set the date to February 15, 2025
 const WEDDING = new Date("February 15, 2025 10:54:00 GMT+0530").getTime();
 
 ```
@@ -140,23 +88,14 @@ The colors are defined in CSS variables at the top of the `<style>` block:
 
 ---
 
-## 🌐 Deploying to GitHub Pages
+## 🛡️ Static Transition Note
 
-1. Push your changes to the `main` branch.
-2. Go to **Settings → Pages** in your repository.
-3. Set the source to `main / root`.
-4. Your site will be live immediately.
-
-> **Note on Security:** Since this is a static site, Firebase keys are public. To secure your data, ensure your Firebase Realtime Database **Rules** are set to only allow valid visitor increments, preventing anyone from deleting or overwriting your data.
+This project has been intentionally stripped of its Firebase and Netlify backend dependencies to ensure the site remains a fast, permanent, and offline-capable static archive. The "Happily Married" status is now the permanent landing experience for all visitors.
 
 ---
 
-## 🤝 Contributing
-
-Feel free to submit issues or pull requests for bugs, improvements, or new features.
-
----
+[![Live Site](https://img.shields.io/badge/🌐%20View%20Live%20Site-EA%20Wedding%20Counter-B83C3C?style=for-the-badge&logoColor=white)](https://anil-eswari.netlify.app)
 
 ## 💛 Credits
 
-Designed with ❤️ for **#EAParinayam** by [OneMark]().
+Designed with ❤️ for **#EAParinayam** by [OneMark](https://onemark.co.in).

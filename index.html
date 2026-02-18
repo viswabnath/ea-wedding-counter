@@ -25,13 +25,10 @@
         }
 
         :root {
-            /* Theme: Red & Gold */
             --color-red: #b83c3c;
             --color-red-dark: #7a0b0b;
             --color-gold: #c59d5f;
-            /* Elegant Gold */
             --color-white: #ffffff;
-
             --font-script: 'Great Vibes', cursive;
             --font-serif: 'Cinzel', serif;
             --font-sans: 'Montserrat', sans-serif;
@@ -45,7 +42,6 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            /* Align content to bottom to keep faces visible */
             justify-content: flex-end;
             min-height: 100dvh;
             padding: 20px 16px;
@@ -53,7 +49,6 @@
             overflow-x: hidden;
         }
 
-        /* Overlay */
         body::before {
             content: '';
             position: fixed;
@@ -85,7 +80,6 @@
             }
         }
 
-        /* ── Main Layout Wrapper ── */
         .content-wrapper {
             width: 100%;
             max-width: 600px;
@@ -96,7 +90,6 @@
             padding-bottom: 20px;
         }
 
-        /* ── The Text Box ── */
         .container {
             background: rgba(255, 255, 255, 0.90);
             backdrop-filter: blur(14px);
@@ -121,12 +114,6 @@
             }
         }
 
-        /* ── Typography ── */
-        h1 {
-            margin: 0;
-            line-height: 1;
-        }
-
         .names {
             display: block;
             font-family: var(--font-script);
@@ -135,11 +122,6 @@
             color: var(--color-red);
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
             margin-bottom: 5px;
-        }
-
-        .emoji-couple {
-            font-size: 0.6em;
-            vertical-align: middle;
         }
 
         .big-day {
@@ -153,12 +135,10 @@
             margin-top: 8px;
         }
 
-        /* ── NEW HASHTAG STYLE ── */
         .hashtag {
             font-family: var(--font-sans);
             font-size: 0.75rem;
             color: var(--color-gold);
-            /* Gold Color */
             letter-spacing: 3px;
             font-weight: 600;
             margin-top: 6px;
@@ -181,7 +161,6 @@
             line-height: 1.4;
         }
 
-        /* ── Countdown (OUTSIDE THE BOX) ── */
         .countdown-wrap {
             margin-top: 5px;
             animation: slideUp 0.8s ease-out both;
@@ -215,7 +194,6 @@
             align-items: center;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
             border-bottom: 3px solid var(--color-gold);
-            /* Gold accent bottom */
         }
 
         .cd-num {
@@ -235,7 +213,6 @@
             font-weight: 600;
         }
 
-        /* ── Footer (OUTSIDE THE BOX) ── */
         .footer {
             text-align: center;
             color: rgba(255, 255, 255, 0.9);
@@ -247,32 +224,6 @@
             animation: slideUp 0.9s ease-out both;
         }
 
-        .visitor-pill {
-            background: rgba(0, 0, 0, 0.35);
-            backdrop-filter: blur(4px);
-            padding: 6px 16px;
-            border-radius: 50px;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-        }
-
-        .live-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: #ff4444;
-            box-shadow: 0 0 8px #ff4444;
-            animation: blink 2s infinite;
-        }
-
-        @keyframes blink {
-            50% {
-                opacity: 0.4;
-            }
-        }
-
         .brand-link {
             color: #fff;
             text-decoration: none;
@@ -281,7 +232,6 @@
             font-size: 0.85rem;
         }
 
-        /* ── Mobile Optimization ── */
         @media (max-width: 600px) {
             .container {
                 padding: 22px 15px;
@@ -320,16 +270,13 @@
     </script>
 
     <div class="content-wrapper">
-
         <div class="container">
             <h1>
                 <span class="names">Anil &amp; Eswari </span><br>
                 <span class="big-day" id="big-day-message">The Big Day</span>
                 <div class="hashtag">#EAParinayam</div>
             </h1>
-
             <div class="divider"></div>
-
             <h2 class="quote" id="quote1"></h2>
             <h2 class="quote" id="quote2" style="font-size: 1rem; margin-top:0;"></h2>
         </div>
@@ -345,49 +292,15 @@
         </div>
 
         <div class="footer">
-            <div class="visitor-pill">
-                <span class="live-dot"></span>
-                <span>Visitors: <span id="visitor-count">—</span></span>
-            </div>
             <div>
                 <span>Designed with ❤️ by <a class="brand-link" href="https://onemark.co.in"
                         target="_blank">OneMark</a></span>
             </div>
         </div>
-
     </div>
 
-
-    <script type="module">
-        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js';
-        import { getDatabase, ref, get, set } from 'https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js';
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyD9aBK-XJxKpzPQSweznOwrqSV8Iz4bIAk",
-            authDomain: "anil-eswari-wedding-counter.firebaseapp.com",
-            databaseURL: "https://anil-eswari-wedding-counter-default-rtdb.firebaseio.com",
-            projectId: "anil-eswari-wedding-counter",
-            storageBucket: "anil-eswari-wedding-counter.firebasestorage.app",
-            messagingSenderId: "207339311926",
-            appId: "1:207339311926:web:458f7fd29473f53e3fd997",
-            measurementId: "G-KZ1B6N67GZ"
-        };
-
-        try {
-            const app = initializeApp(firebaseConfig);
-            const db = getDatabase(app);
-            const vRef = ref(db, 'visitors');
-            const snap = await get(vRef);
-            const n = (snap.val() || 0) + 1;
-            await set(vRef, n);
-            document.getElementById('visitor-count').textContent = n.toLocaleString('en-IN');
-        } catch (e) {
-            console.warn('Firebase error:', e.message);
-            document.getElementById('visitor-count').textContent = '—';
-        }
-
+    <script>
         /* ── Countdown Logic ── */
-        // Date: Feb 15, 2025
         const WEDDING = new Date("February 15, 2025 10:54:00 GMT+0530").getTime();
 
         const elD = document.getElementById('cd-d');
@@ -401,13 +314,6 @@
 
         const pad = n => String(n).padStart(2, '0');
 
-        function setNum(el, val) {
-            const s = pad(val);
-            if (el.textContent !== s) {
-                el.textContent = s;
-            }
-        }
-
         function tick() {
             const diff = WEDDING - Date.now();
             const t = Math.abs(diff);
@@ -416,7 +322,10 @@
             const m = Math.floor((t % 3600000) / 60000);
             const s = Math.floor((t % 60000) / 1000);
 
-            setNum(elD, d); setNum(elH, h); setNum(elM, m); setNum(elS, s);
+            elD.textContent = pad(d);
+            elH.textContent = pad(h);
+            elM.textContent = pad(m);
+            elS.textContent = pad(s);
 
             if (diff < 0) {
                 elMsg.innerHTML = 'Happily Married!';
@@ -434,7 +343,6 @@
         tick();
         setInterval(tick, 1000);
     </script>
-
 </body>
 
 </html>
